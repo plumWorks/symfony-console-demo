@@ -1,1 +1,1 @@
-# symfony-console-demo
+# Symfony Console Demo
