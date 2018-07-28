@@ -6,9 +6,8 @@ RUN apt-get update
 RUN apt-get install -y git zip wget
 
 # install php-unit
-RUN wget https://phar.phpunit.de/phpunit-6.5.phar && \
- chmod +x phpunit-6.5.phar && \
- mv phpunit-6.5.phar /usr/local/bin/phpunit
+RUN wget -O phpunit https://phar.phpunit.de/phpunit-7.phar && \
+ chmod +x phpunit &&
 
 # install composer 1.6.5
 ENV COMPOSER_ALLOW_SUPERUSER 1
