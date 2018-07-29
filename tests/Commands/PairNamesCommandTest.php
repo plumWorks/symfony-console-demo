@@ -7,7 +7,7 @@
 
   class PairNamesCommandTest extends KernelTestCase {
 
-    const POOL_NAMES_EQUAL = "John Mary JohnMary John Mary";
+    const POOL_NAMES_EQUAL = "John Mary JohnMary john Mary";
     const POOL_NAMES_DIFF = "John JohnMary John Mary";
 
     private $application;
@@ -37,9 +37,9 @@
 
     public function testExecute() {
       $output = $this->executeCommandWithArguments("app:pair-names", ['pool' => self::POOL_NAMES_EQUAL]);
-      $this->assertContains("1", $output);
+      $this->assertSame("1\n", $output);
 
       $output = $this->executeCommandWithArguments("app:pair-names", ['pool' => self::POOL_NAMES_DIFF]);
-      $this->assertContains("0", $output);
+      $this->assertSame("0\n", $output);
     }
   }
