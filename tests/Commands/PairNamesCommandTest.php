@@ -4,8 +4,7 @@
   use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
 
   class PairNamesCommandTest extends KernelTestCase {
-
-    use RunCommand;
+    use \App\Tests\Traits\RunCommand;
 
     const POOL_NAMES_EQUAL = "John Mary JohnMary john Mary";
     const POOL_NAMES_DIFF = "John JohnMary John Mary";

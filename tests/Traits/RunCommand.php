@@ -1,5 +1,5 @@
 <?php
-  namespace App\Tests\Commands;
+  namespace App\Tests\Traits;
 
   use Symfony\Component\Console\Tester\CommandTester;
   use Symfony\Bundle\FrameworkBundle\Console\Application;
