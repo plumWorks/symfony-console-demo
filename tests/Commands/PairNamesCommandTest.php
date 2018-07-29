@@ -1,12 +1,16 @@
 <?php
   namespace App\Tests\Commands;
 
+  use Symfony\Component\Console\Tester\CommandTester;
+  use Symfony\Bundle\FrameworkBundle\Console\Application;
+  use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
+
   class PairNamesCommandTest extends KernelTestCase {
 
     const POOL_NAMES_EQUAL = "John Mary JohnMary John Mary";
     const POOL_NAMES_DIFF = "John JohnMary John Mary";
 
-    private Application $application;
+    private $application;
 
     protected function setUp() {
       $kernel = static::createKernel();
@@ -19,12 +23,12 @@
 
     protected function executeCommandWithArguments(string $commandName, array $args = []): string {
       if (isset($args['command'])) {
-        delete $args['command'];
+        unset($args['command']);
       }
 
       $command = $this->application->find($commandName);
       $commandTester = new CommandTester($command);
-      $commandTester->execute->([
+      $commandTester->execute([
         'command' => $command->getName()
       ] + $args);
 
