@@ -1,6 +1,8 @@
 {
+    "name": "symfony/command-demo",
+    "description": "Symfony Console Application - Example",
     "type": "project",
-    "license": "GPL-3.0",
+    "license": "GPL-3.0-only",
     "require": {
         "php": "^7.1.3",
         "ext-iconv": "*",
@@ -55,8 +57,7 @@
     },
     "scripts": {
         "auto-scripts": {
-            "cache:clear": "symfony-cmd",
-            "assets:install %PUBLIC_DIR%": "symfony-cmd"
+            "cache:clear": "symfony-cmd"
         },
         "post-install-cmd": [
             "@auto-scripts"
