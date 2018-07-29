@@ -1,3 +1,5 @@
+### Symfony Console Demo
+
 This project shows you how to use and test [Symfony](https://symfony.com) Console Application using [Docker](https://www.docker.com).
 
 ## How to install
