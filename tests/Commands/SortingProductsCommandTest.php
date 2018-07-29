@@ -4,7 +4,9 @@
   use Symfony\Component\Console\Tester\CommandTester;
   use Symfony\Bundle\FrameworkBundle\Console\Application;
   use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
+
   use Symfony\Component\Serializer\Exception\NotEncodableValueException;
+  use Symfony\Component\Serializer\Exception\MissingConstructorArgumentsException;
 
   class SortingProductsCommandTest extends KernelTestCase {
       use \App\Tests\Traits\RunCommand;
@@ -31,6 +33,8 @@
             $output = $this->executeCommandWithArguments('app:sorting-products', ['products' => $products]);
           } catch (NotEncodableValueException $e) {
             $this->assertTrue($type === 'corrupted', $e->getMessage());
+          } catch (MissingConstructorArgumentsException $e) {
+            $this->assertTrue($type === 'invalid', $e->getMessage());
           }
         }
       }
