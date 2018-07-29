@@ -5,7 +5,8 @@
   use Symfony\Component\Console\Input\InputInterface;
   use Symfony\Component\Console\Output\OutputInterface;
   use Symfony\Component\Console\Input\InputArgument;
-  use Symfony\Component\Validator\Constraints as Assert;
+
+  use App\Exceptions;
 
   class PairNamesCommand extends Command {
 
@@ -29,23 +30,23 @@
       $equal;
 
       foreach ($this->searchNames as $name) {
-          $count = preg_match_all("/({$name})/mi", $pool);
+        $preg = "/({$name})/mi";
+        $count = preg_match_all($preg, $pool);
 
-          if ($count === false) {
-            $message = array_flip(get_defined_constants(true)['pcre'])[preg_last_error()];
-            throw new \Exception($message, 1);
-          }
+        if ($count === false) {
+          throw Exceptions::pregMatchFaild($preg, $pool);
+        }
 
-          if (!isset($checkCount, $equal)) {
-            $checkCount = $count;
-            $equal = true;
-          } else {
-            $equal = $checkCount === $count;
-            $checkCount = $count;
+        if (!isset($checkCount, $equal)) {
+          $checkCount = $count;
+          $equal = true;
+        } else {
+          $equal = $checkCount === $count;
+          $checkCount = $count;
 
-            if (!$equal)
-              break;
-          }
+          if (!$equal)
+            break;
+        }
       }
 
       $output->writeln($equal ? "1" : "0");
