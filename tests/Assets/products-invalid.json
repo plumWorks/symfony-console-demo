@@ -1,0 +1,29 @@
+[
+	{
+		"title": "H&M T-Shirt White",
+		"price": 10.99,
+	},
+	{
+		"title": "Magento Enterprise License",
+		"inventory": 9999
+	},
+	{
+		"price": 500.01,
+		"inventory": 2
+	},
+	{
+		"title": "iPad Pro",
+		"price": 990.20,
+		"inventory": 2
+	},
+	{
+		"title": "Garmin Fenix 5",
+		"price": 789.67,
+		"inventory": 34
+	},
+	{
+		"title": "Garmin Fenix 3 HR Sapphire Performer Bundle",
+		"price": 789.67,
+		"inventory": 12
+	}, {}
+]
