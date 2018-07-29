@@ -1,14 +1,14 @@
 FROM php:7.2.8-cli
 
-RUN apt-get update
-
 # install dependencies
-RUN apt-get install -y git zip wget
+RUN apt-get update && \
+    apt-get install -y \
+    git zip wget zlib1g-dev && \
+    docker-php-ext-install zip
 
 # install php-unit
-RUN wget https://phar.phpunit.de/phpunit-6.5.phar && \
- chmod +x phpunit-6.5.phar && \
- mv phpunit-6.5.phar /usr/local/bin/phpunit
+RUN wget -O phpunit https://phar.phpunit.de/phpunit-7.phar && \
+ chmod +x phpunit
 
 # install composer 1.6.5
 ENV COMPOSER_ALLOW_SUPERUSER 1
