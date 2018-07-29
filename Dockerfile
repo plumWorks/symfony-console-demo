@@ -6,10 +6,6 @@ RUN apt-get update && \
     git zip wget zlib1g-dev && \
     docker-php-ext-install zip
 
-# install php-unit
-RUN wget -O phpunit https://phar.phpunit.de/phpunit-7.phar && \
- chmod +x phpunit
-
 # install composer 1.6.5
 ENV COMPOSER_ALLOW_SUPERUSER 1
 ENV COMPOSER_HOME /tmp
