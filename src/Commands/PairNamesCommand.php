@@ -20,7 +20,7 @@
         ->addArgument(
           'pool',
           InputArgument::REQUIRED,
-          'What text should be searched for names?'
+          'What text should be search for names?'
         );
     }
 
