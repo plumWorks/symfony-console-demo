@@ -20,7 +20,7 @@
       $this->fileExistsAt($filePath);
 
       $content = file_get_contents($filePath);
-      $this->assertTrue($content !== false, var_export(error_get_last(), false));
+      $this->assertTrue($content !== false, var_export(error_get_last(), true));
 
       return $content;
     }

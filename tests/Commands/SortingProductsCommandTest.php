@@ -4,15 +4,16 @@
   use Symfony\Component\Console\Tester\CommandTester;
   use Symfony\Bundle\FrameworkBundle\Console\Application;
   use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
+  use Symfony\Component\Serializer\Exception\NotEncodableValueException;
 
   class SortingProductsCommandTest extends KernelTestCase {
       use \App\Tests\Traits\RunCommand;
       use \App\Tests\Traits\Assets;
 
       const PRODUCTS_FILES = [
-        "valid" => "products.json",
-        "invalid" => "products-invalid.json",
         "corrupted" => "products-corrupted.json",
+        "invalid" => "products-invalid.json",
+        "valid" => "products.json",
         "sorted" => "products-sorted.json"
       ];
 
@@ -23,22 +24,14 @@
       }
 
       public function testValidateJSON() {
-        $this->expectExceptionCode(2);
-
         foreach (self::PRODUCTS_FILES as $type => $fileName) {
-          switch ($type) {
-            case 'corrupted':
-              // TODO: add expectException
-              break;
-            case 'invalid':
-              // TODO: add expectException
-              break;
-            default:
-              break;
-          }
 
-          $products = $this->getFileContents($fileName);
-          $output = $this->executeCommandWithArguments('app:sorting-products', ['products' => $products]);
+          try {
+            $products = $this->getFileContents($fileName);
+            $output = $this->executeCommandWithArguments('app:sorting-products', ['products' => $products]);
+          } catch (NotEncodableValueException $e) {
+            $this->assertTrue($type === 'corrupted', $e->getMessage());
+          }
         }
       }
 
